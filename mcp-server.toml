@@ -1,0 +1,74 @@
+[server]
+id = "mcp_workflow"
+display_name = "Workflow"
+version = "1.0.0"
+domain = "platform-core"
+risk_level = "medium"
+writes_allowed = "gated"
+transports = ["stdio"]
+credentials = []
+
+[[tools]]
+name = "list_workflows"
+description = "List all workflow definitions"
+risk_class = "read_only"
+
+[[tools]]
+name = "get_workflow"
+description = "Get workflow definition with steps"
+risk_class = "read_only"
+
+[[tools]]
+name = "create_workflow"
+description = "Create a new workflow definition"
+risk_class = "internal_write"
+
+[[tools]]
+name = "start_workflow"
+description = "Start a workflow instance"
+risk_class = "internal_write"
+
+[[tools]]
+name = "list_instances"
+description = "List workflow instances"
+risk_class = "read_only"
+
+[[tools]]
+name = "get_instance"
+description = "Get instance details with history"
+risk_class = "read_only"
+
+[[tools]]
+name = "advance_step"
+description = "Advance instance to next step"
+risk_class = "internal_write"
+
+[[tools]]
+name = "cancel_instance"
+description = "Cancel a running instance"
+risk_class = "internal_write"
+
+[[tools]]
+name = "list_approvals"
+description = "List pending approvals"
+risk_class = "read_only"
+
+[[tools]]
+name = "resolve_approval"
+description = "Approve or reject"
+risk_class = "internal_write"
+
+[[tools]]
+name = "get_history"
+description = "Get execution history"
+risk_class = "read_only"
+
+[[tools]]
+name = "retry_instance"
+description = "Retry a failed instance"
+risk_class = "internal_write"
+
+[[tools]]
+name = "get_stats"
+description = "Get workflow stats"
+risk_class = "read_only"
