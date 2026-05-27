@@ -1,15 +1,16 @@
-mod domain;
-mod engine;
+mod types;
+mod store;
 mod server;
 
-use engine::Engine;
 use rmcp::{ServiceExt, transport::stdio};
-use server::WorkflowServer;
 
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
-    tracing_subscriber::fmt().with_env_filter(tracing_subscriber::EnvFilter::from_default_env()).init();
-    let service = WorkflowServer { engine: Engine::seeded() }.serve(stdio()).await?;
+    let manifest = adk_mcp_sdk::ServerManifest::from_file(std::path::Path::new("mcp-server.toml"))?;
+    let errors = manifest.validate();
+    if !errors.is_empty() { for e in &errors { eprintln!("  - {e}"); } }
+    let server = server::WorkflowServer::new();
+    let service = server.serve(stdio()).await?;
     service.waiting().await?;
     Ok(())
 }

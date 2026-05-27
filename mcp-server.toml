@@ -1,74 +1,116 @@
-[server]
-id = "mcp_workflow"
-display_name = "Workflow"
+server_id = "mcp_workflow"
+display_name = "Workflow Engine"
 version = "1.0.0"
-domain = "platform-core"
+domain = "workflow"
+sdk_version = "0.1.0"
 risk_level = "medium"
 writes_allowed = "gated"
 transports = ["stdio"]
 credentials = []
+governance_gates = ["approval_required_for_transitions"]
+environments = ["development", "staging", "production"]
 
 [[tools]]
-name = "list_workflows"
-description = "List all workflow definitions"
-risk_class = "read_only"
-
-[[tools]]
-name = "get_workflow"
-description = "Get workflow definition with steps"
-risk_class = "read_only"
-
-[[tools]]
-name = "create_workflow"
-description = "Create a new workflow definition"
+name = "workflow_create"
+description = "Define a workflow state machine"
 risk_class = "internal_write"
+requires_approval = false
+credential_bindings = []
 
 [[tools]]
-name = "start_workflow"
+name = "workflow_list"
+description = "List workflow definitions"
+risk_class = "read_only"
+requires_approval = false
+credential_bindings = []
+
+[[tools]]
+name = "instance_start"
 description = "Start a workflow instance"
 risk_class = "internal_write"
+requires_approval = false
+credential_bindings = []
 
 [[tools]]
-name = "list_instances"
-description = "List workflow instances"
-risk_class = "read_only"
-
-[[tools]]
-name = "get_instance"
-description = "Get instance details with history"
-risk_class = "read_only"
-
-[[tools]]
-name = "advance_step"
-description = "Advance instance to next step"
+name = "instance_transition"
+description = "Transition workflow state"
 risk_class = "internal_write"
+requires_approval = false
+credential_bindings = []
 
 [[tools]]
-name = "cancel_instance"
-description = "Cancel a running instance"
-risk_class = "internal_write"
-
-[[tools]]
-name = "list_approvals"
-description = "List pending approvals"
+name = "instance_get"
+description = "Get workflow instance state"
 risk_class = "read_only"
+requires_approval = false
+credential_bindings = []
 
 [[tools]]
-name = "resolve_approval"
-description = "Approve or reject"
+name = "task_create"
+description = "Create a task"
 risk_class = "internal_write"
+requires_approval = false
+credential_bindings = []
 
 [[tools]]
-name = "get_history"
-description = "Get execution history"
-risk_class = "read_only"
-
-[[tools]]
-name = "retry_instance"
-description = "Retry a failed instance"
+name = "task_update"
+description = "Update task status/assignee"
 risk_class = "internal_write"
+requires_approval = false
+credential_bindings = []
 
 [[tools]]
-name = "get_stats"
-description = "Get workflow stats"
+name = "task_list"
+description = "List tasks"
 risk_class = "read_only"
+requires_approval = false
+credential_bindings = []
+
+[[tools]]
+name = "approval_create"
+description = "Create approval request"
+risk_class = "internal_write"
+requires_approval = false
+credential_bindings = []
+
+[[tools]]
+name = "approval_decide"
+description = "Submit approval decision"
+risk_class = "internal_write"
+requires_approval = false
+credential_bindings = []
+
+[[tools]]
+name = "approval_list"
+description = "List approvals"
+risk_class = "read_only"
+requires_approval = false
+credential_bindings = []
+
+[[tools]]
+name = "case_create"
+description = "Create a case"
+risk_class = "internal_write"
+requires_approval = false
+credential_bindings = []
+
+[[tools]]
+name = "case_add_note"
+description = "Add note to case"
+risk_class = "internal_write"
+requires_approval = false
+credential_bindings = []
+
+[[tools]]
+name = "case_update"
+description = "Update case status"
+risk_class = "internal_write"
+requires_approval = false
+credential_bindings = []
+
+[[tools]]
+name = "case_list"
+description = "List cases"
+risk_class = "read_only"
+requires_approval = false
+credential_bindings = []
