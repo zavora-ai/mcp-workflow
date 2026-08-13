@@ -1,8 +1,8 @@
 server_id = "mcp_workflow"
-display_name = "Workflow Engine"
+display_name = "Workflow"
 version = "1.1.0"
 domain = "workflow"
-sdk_version = "0.1.0"
+sdk_version = "0.2.0"
 risk_level = "medium"
 writes_allowed = "gated"
 transports = ["stdio"]
@@ -12,105 +12,105 @@ environments = ["development", "staging", "production"]
 
 [[tools]]
 name = "workflow_create"
-description = "Define a workflow state machine"
+description = "Define a workflow (state machine) with states, transitions, and approval gates."
 risk_class = "internal_write"
 requires_approval = false
 credential_bindings = []
 
 [[tools]]
 name = "workflow_list"
-description = "List workflow definitions"
+description = "List all workflow definitions."
 risk_class = "read_only"
 requires_approval = false
 credential_bindings = []
 
 [[tools]]
 name = "instance_start"
-description = "Start a workflow instance"
+description = "Start a new workflow instance for an entity (order, claim, document, etc.)."
 risk_class = "internal_write"
 requires_approval = false
 credential_bindings = []
 
 [[tools]]
 name = "instance_transition"
-description = "Transition workflow state"
+description = "Transition a workflow instance to a new state by performing an action."
 risk_class = "internal_write"
 requires_approval = false
 credential_bindings = []
 
 [[tools]]
 name = "instance_get"
-description = "Get workflow instance state"
+description = "Get the current state and history of a workflow instance."
 risk_class = "read_only"
 requires_approval = false
 credential_bindings = []
 
 [[tools]]
 name = "task_create"
-description = "Create a task"
+description = "Create a task (assignable unit of work). Can be linked to a workflow instance or be standalone."
 risk_class = "internal_write"
 requires_approval = false
 credential_bindings = []
 
 [[tools]]
 name = "task_update"
-description = "Update task status/assignee"
+description = "Update a task (status, assignee, priority)."
 risk_class = "internal_write"
 requires_approval = false
 credential_bindings = []
 
 [[tools]]
 name = "task_list"
-description = "List tasks"
+description = "List tasks. Optionally filter by status or assignee."
 risk_class = "read_only"
 requires_approval = false
 credential_bindings = []
 
 [[tools]]
 name = "approval_create"
-description = "Create approval request"
+description = "Create an approval request (routes to one or more approvers)."
 risk_class = "internal_write"
 requires_approval = false
 credential_bindings = []
 
 [[tools]]
 name = "approval_decide"
-description = "Submit approval decision"
+description = "Submit an approval decision (approve or reject)."
 risk_class = "internal_write"
 requires_approval = false
 credential_bindings = []
 
 [[tools]]
 name = "approval_list"
-description = "List approvals"
+description = "List pending approvals (optionally for a specific approver)."
 risk_class = "read_only"
 requires_approval = false
 credential_bindings = []
 
 [[tools]]
 name = "case_create"
-description = "Create a case"
+description = "Create a case (support ticket, legal matter, claim, incident, change request)."
 risk_class = "internal_write"
 requires_approval = false
 credential_bindings = []
 
 [[tools]]
 name = "case_add_note"
-description = "Add note to case"
+description = "Add a note to a case."
 risk_class = "internal_write"
 requires_approval = false
 credential_bindings = []
 
 [[tools]]
 name = "case_update"
-description = "Update case status"
+description = "Update case status, assignee, or priority."
 risk_class = "internal_write"
 requires_approval = false
 credential_bindings = []
 
 [[tools]]
 name = "case_list"
-description = "List cases"
+description = "List all cases."
 risk_class = "read_only"
 requires_approval = false
 credential_bindings = []

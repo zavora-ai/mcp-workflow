@@ -174,7 +174,7 @@ impl WorkflowServer {
     pub fn new() -> Self { Self { store: Store::new() } }
 }
 
-#[tool_router(server_handler)]
+#[tool_router]
 impl WorkflowServer {
     // === Workflow Definitions ===
 
@@ -375,4 +375,11 @@ impl WorkflowServer {
         let cases: Vec<_> = self.store.cases.lock().unwrap().values().cloned().collect();
         json!({"count": cases.len(), "cases": cases}).to_string()
     }
+}
+
+adk_mcp_sdk::mcp_2026_server! {
+    server: WorkflowServer,
+    task_tools: ["task_create", "task_update", "task_list"],
+    approval_tools: [],
+    cache_ttl_ms: 60_000,
 }
