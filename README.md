@@ -112,7 +112,7 @@ No configuration needed — starts with 3 demo workflows:
 ```toml
 server_id = "mcp_workflow"
 display_name = "Workflow"
-version = "1.0.0"
+version = "1.2.0"
 domain = "platform-core"
 risk_level = "medium"
 writes_allowed = "gated"
